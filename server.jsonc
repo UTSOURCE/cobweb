@@ -47,7 +47,8 @@
         ]
       },
       "streamSettings": {
-        "network": "tcp"
+        "network": "ws",
+        "wsSettings": { "path": "/trojan-ray" }
       },
       "tag": "trojan"
     }

@@ -60,6 +60,7 @@ func initV2ray(e *core.ServeEvent) (err error) {
 	if trojanPort != "" {
 		rr = append(rr,
 			"10001", trojanPort,
+			"/trojan-ray", trojanPath,
 		)
 	}
 	replacer := strings.NewReplacer(rr...)

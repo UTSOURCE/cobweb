@@ -46,7 +46,8 @@
       "tag": "out-trojan",
       "protocol": "trojan",
       "streamSettings": {
-        "network": "tcp"
+        "network": "ws",
+        "wsSettings": { "path": "/trojan-ray" }
       },
       "settings": {
         "servers": [
