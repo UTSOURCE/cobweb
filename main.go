@@ -4,6 +4,7 @@ import (
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
 	_ "github.com/shynome/cobweb/v3/migrations"
+	"github.com/shynome/err0"
 	"github.com/shynome/err0/try"
 )
 
@@ -25,6 +26,17 @@ func main() {
 	app.RootCmd.PersistentFlags().StringVar(&wsPort, "ws-port", "0", "v2ray websocket listen port")
 	app.RootCmd.PersistentFlags().StringVar(&trojanPort, "trojan-port", "", "trojan listen port")
 	app.RootCmd.PersistentFlags().StringVar(&trojanPath, "trojan-path", "/trojan-ray", "trojan websocket path")
+	app.OnServe().BindFunc(func(e *core.ServeEvent) error {
+		e.InstallerFunc = func(app core.App, systemSuperuser *core.Record, baseURL string) (err error) {
+			defer err0.Then(&err, nil, nil)
+			superusers := try.To1(app.FindCachedCollectionByNameOrId("_superuser"))
+			su := core.NewRecord(superusers)
+			su.SetEmail("admin@cobweb.example")
+			su.SetPassword("admin@cobweb.example")
+			return app.Save(su)
+		}
+		return e.Next()
+	})
 	app.OnServe().BindFunc(initV2ray)
 	app.OnBackupCreate().BindFunc(func(e *core.BackupEvent) error {
 		e.Exclude = append(e.Exclude, "auxiliary.db", "auxiliary.db-shm", "auxiliary.db-wal")
