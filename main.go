@@ -29,7 +29,7 @@ func main() {
 	app.OnServe().BindFunc(func(e *core.ServeEvent) error {
 		e.InstallerFunc = func(app core.App, systemSuperuser *core.Record, baseURL string) (err error) {
 			defer err0.Then(&err, nil, nil)
-			superusers := try.To1(app.FindCachedCollectionByNameOrId("_superuser"))
+			superusers := try.To1(app.FindCachedCollectionByNameOrId("_superusers"))
 			su := core.NewRecord(superusers)
 			su.SetEmail("admin@cobweb.example")
 			su.SetPassword("admin@cobweb.example")
