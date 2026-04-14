@@ -1,6 +1,8 @@
+VERSION := $(shell git describe --tags --always --dirty)
+
 build:
-	CGO_ENABLED=0 go build  -ldflags="-X 'main.Version=$$(git describe --tags --always --dirty)' -s -w" -o cobweb .
+	CGO_ENABLED=0 go build  -ldflags="-X 'main.Version=${VERSION}' -s -w" -o cobweb .
 docker: build
-	docker build . -t shynome/cobweb:$$(git describe --tags --always --dirty)
+	docker build . -t shynome/cobweb:${VERSION}
 push: docker
-	docker push shynome/cobweb:$$(git describe --tags --always --dirty)
+	docker push shynome/cobweb:${VERSION}
