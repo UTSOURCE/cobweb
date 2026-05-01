@@ -8,9 +8,7 @@
 
 # claw cloud 使用教程(视频)
 
-趁现在还有热度, 放个 claw cloud 的 aff 注册链接: https://console.run.claw.cloud/signin?link=TVY0NDGJPJWR
-
-注: 由于 claw cloud 错误地删除了我的数据, 不再进行推荐 (教程还放在这是觉得视频可以作个参考)
+注: 由于 claw cloud 错误地删除了我的数据, 不再进行推荐 (教程还放在这是觉得视频可以作个参考). claw cloud 现已停止服务.
 
 https://github.com/user-attachments/assets/767cf8e4-6881-4235-9931-339d54946ff6
 
